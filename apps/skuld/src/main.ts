@@ -6,31 +6,30 @@ import Surreal from 'surrealdb.js';
 
 // const db = new Surreal('http://127.0.0.1:8000/rpc');
 
-(async() => {
-	try {
+(async () => {
+  try {
     Surreal.Instance.connect('http://127.0.0.1:8000/rpc');
-		// Signin as a namespace, database, or root user
-		await Surreal.Instance.signin({
-			user: 'root',
-			pass: 'root',
-		});
+    // Signin as a namespace, database, or root user
+    await Surreal.Instance.signin({
+      user: 'root',
+      pass: 'root',
+    });
 
     await Surreal.Instance.use('test', 'test');
 
-    let task = await Surreal.Instance.create("task", {
+    let task = await Surreal.Instance.create('task', {
       name: 'test',
-      completed: []
-    })
+      completed: [],
+    });
 
     // Select all people records
-		let people = await Surreal.Instance.select("person");
+    let people = await Surreal.Instance.select('person');
 
-    console.log(people)
-
-	} catch (e) {
-		console.error('ERROR', e);
-	}
-})()
+    console.log(people);
+  } catch (e) {
+    console.error('ERROR', e);
+  }
+})();
 
 const app = express();
 

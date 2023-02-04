@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import { Task } from '@schedulus/shared';
+import { useEffect, useState } from 'react';
 
 export function App() {
   const [tasks, setTask] = useState<Task[] | undefined>();
@@ -9,7 +9,13 @@ export function App() {
       .then((res) => res.json())
       .then((task) => setTask(task));
   }, []);
-  return (<>{tasks?.map( task => <div key={task.id}>{task.id}</div>)}</>)
+  return (
+    <>
+      {tasks?.map((task) => (
+        <div key={task.id}>{task.id}</div>
+      ))}
+    </>
+  );
 }
 
 export default App;

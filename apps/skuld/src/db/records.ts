@@ -1,3 +1,3 @@
 export const Records = {
-    task: 'task'
-}
+  task: 'task',
+};
