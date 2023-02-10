@@ -4,31 +4,16 @@ import router from './router';
 
 import Surreal from 'surrealdb.js';
 
-// const db = new Surreal('http://127.0.0.1:8000/rpc');
-
 (async () => {
-  try {
-    Surreal.Instance.connect('http://127.0.0.1:8000/rpc');
-    // Signin as a namespace, database, or root user
-    await Surreal.Instance.signin({
-      user: 'root',
-      pass: 'root',
-    });
+  await Surreal.Instance.connect('http://127.0.0.1:8000/rpc');
+  await Surreal.Instance.wait();
+  await Surreal.Instance.signin({
+    user: 'root',
+    pass: 'root',
+  });
+  await Surreal.Instance.use('test', 'test');
 
-    await Surreal.Instance.use('test', 'test');
-
-    let task = await Surreal.Instance.create('task', {
-      name: 'test',
-      completed: [],
-    });
-
-    // Select all people records
-    let people = await Surreal.Instance.select('person');
-
-    console.log(people);
-  } catch (e) {
-    console.error('ERROR', e);
-  }
+  // await Surreal.Instance.delete('task');
 })();
 
 const app = express();
@@ -45,6 +30,8 @@ const app = express();
 // );
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
+
+app.use(express.json());
 
 app.use(router);
 

@@ -8,4 +8,9 @@ router.get('/tasks', async (_req, res) => {
   res.send(response);
 });
 
+router.post('/tasks/add', async (req, res) => {
+  const response = await TaskController.addTasks(req.body);
+  res.send(response);
+});
+
 export default router;
