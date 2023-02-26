@@ -7,7 +7,7 @@ export default class TaskController {
     return Surreal.Instance.select(Records.task);
   };
 
-  static addTasks = async (task: Omit<Task, 'id'>): Promise<Task> => {
+  static addTask = async (task: Omit<Task, 'id'>): Promise<Task> => {
     return Surreal.Instance.create(Records.task, task);
   };
 }

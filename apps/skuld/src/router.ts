@@ -9,7 +9,7 @@ router.get('/tasks', async (_req, res) => {
 });
 
 router.post('/tasks/add', async (req, res) => {
-  const response = await TaskController.addTasks(req.body);
+  const response = await TaskController.addTask(req.body);
   res.send(response);
 });
 
